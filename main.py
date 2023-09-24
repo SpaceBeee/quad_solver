@@ -1,8 +1,11 @@
 import math
+import cmath
 
 def quad_solver(a, b, c):
     if type(a) != float or type(b) != float or type(c) != float:
         raise TypeError("This should be a float")
+    if a == 0:
+        raise ValueError("You cannot have 0 as a  coefficient")
 
     p_roots = []
 
@@ -13,8 +16,9 @@ def quad_solver(a, b, c):
     elif ((b ** 2) - (4 * a * c)) == 0:
         p_roots.append((-b) / (2 * a))
 
-    else:
-        raise Exception("there are no real roots")
+    elif ((b ** 2) - (4 * a * c)) <= 0:
+        p_roots.append(((-b) + (cmath.sqrt((b ** 2) - (4 * a * c)))) / (2 * a))
+        p_roots.append(((-b) - (cmath.sqrt((b ** 2) - (4 * a * c)))) / (2 * a))
 
     return p_roots
 
